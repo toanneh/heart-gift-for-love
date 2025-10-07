@@ -1,206 +1,295 @@
-<!DOCTYPE html>
-<html lang="vi">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trái Tim Lấp Lánh - Tặng Em ❤️</title>
+  <title>MINH IT - Heart Animation</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
   <style>
-    body {
+    html, body {
+      height: 100%;
+      padding: 0;
       margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #000428, #004e92);
+      background: rgba(0, 0, 0, 0.851);
       overflow: hidden;
-      font-family: 'Georgia', serif;
-      color: #ffd700;
+      font-family: 'Arial', sans-serif;
     }
-
-    .heart-container {
-      position: relative;
-      width: 400px;
-      height: 400px;
-    }
-
-    .heart {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 200px;
-      height: 180px;
-      background: radial-gradient(circle, #ffd700 0%, rgba(255, 215, 0, 0.8) 30%, transparent 70%);
-      transform: rotate(-45deg) translate(-50%, -50%);
-      clip-path: path('M100,25 C40,25 15,65 15,105 C15,145 55,185 100,195 C145,185 185,145 185,105 C185,65 170,25 100,25 Z');
-      animation: pulse 1.5s ease-in-out infinite;
-      box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
-      z-index: 2;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: rotate(-45deg) translate(-50%, -50%) scale(1);
-        box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
-      }
-      50% {
-        transform: rotate(-45deg) translate(-50%, -50%) scale(1.15);
-        box-shadow: 0 0 80px rgba(255, 215, 0, 0.9);
-      }
-    }
-
-    .particle {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: linear-gradient(to bottom, #ffd700, #ffed4e);
-      border-radius: 50%;
-      animation: radiate 2s ease-out infinite;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-    }
-
-    @keyframes radiate {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(15) translateY(-300px);
-      }
-    }
-
-    .text-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 400px;
-      height: 400px;
-      animation: rotateText 15s linear infinite;
-      transform-origin: center;
-    }
-
-    .text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform-origin: 0 0;
-      color: #ffd700;
-      font-size: 16px;
-      opacity: 0.8;
-      text-shadow: 0 0 10px #ffd700, 0 0 20px rgba(255, 215, 0, 0.5);
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    @keyframes rotateText {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .message {
-      position: absolute;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      font-size: 24px;
-      color: #fff;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-      animation: fadeIn 3s ease-in-out forwards;
-      z-index: 1;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-
-    .stars {
+    canvas {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
-        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
-        radial-gradient(2px 2px at 160px 30px, #fff, transparent);
-      background-repeat: repeat;
-      background-size: 200px 100px;
-      animation: twinkle 3s linear infinite;
-      opacity: 0.7;
-      z-index: 0;
     }
-
-    @keyframes twinkle {
+    .box {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .text-overlay {
+      position: absolute;
+      bottom: 10%;
+      color: #ffffff;
+      font-size: 2rem;
+      font-style: italic;
+      text-shadow: 0 0 8px rgba(255, 105, 180, 0.7), 0 0 15px rgba(255, 105, 180, 0.4);
+      animation: glowText 2s ease-in-out infinite;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    @keyframes glowText {
       0%, 100% { opacity: 0.7; }
       50% { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
-  <div class="heart-container">
-    <div class="heart"></div>
-    <div class="text-ring">
-      <div class="text" style="transform: rotate(0deg) translate(180px);">Anh yêu em ❤️</div>
-      <div class="text" style="transform: rotate(30deg) translate(180px);">Mãi mãi</div>
-      <div class="text" style="transform: rotate(60deg) translate(180px);">Bên em</div>
-      <div class="text" style="transform: rotate(90deg) translate(180px);">Hạnh phúc</div>
-      <div class="text" style="transform: rotate(120deg) translate(180px);">Của anh</div>
-      <div class="text" style="transform: rotate(150deg) translate(180px);">Chỉ có em</div>
-      <div class="text" style="transform: rotate(180deg) translate(180px);">Trái tim</div>
-      <div class="text" style="transform: rotate(210deg) translate(180px);">Này dành</div>
-      <div class="text" style="transform: rotate(240deg) translate(180px);">Cho em</div>
-      <div class="text" style="transform: rotate(270deg) translate(180px);">Yêu em</div>
-      <div class="text" style="transform: rotate(300deg) translate(180px);">Nhiều lắm</div>
-      <div class="text" style="transform: rotate(330deg) translate(180px);">❤️</div>
-    </div>
-    <div class="message">Em là tất cả của anh...</div>
+  <div class="box">
+    <canvas id="pinkboard"></canvas>
+    <div class="text-overlay">I Love You</div>
   </div>
-
   <script>
-    const container = document.querySelector('.heart-container');
+    var settings = {
+      particles: {
+        length: 8000, // Giảm để tối ưu nhưng giữ hình trái tim rõ
+        duration: 4, // Giữ nguyên thời gian sống của hạt
+        velocity: 80, // Giữ nguyên vận tốc
+        effect: -1.3, // Giữ nguyên hiệu ứng ban đầu
+        size: 8, // Giữ nguyên kích thước hạt
+      },
+      pulse: {
+        scale: 1.0, // Tỷ lệ cơ bản
+        amplitude: 0.15, // Phạm vi đập
+        frequency: 0.6, // Tần số đập (giây)
+      }
+    };
 
-    function createParticle() {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      const angle = Math.random() * Math.PI * 2;
-      const velocity = Math.random() * 100 + 50;
-      particle.style.left = '50%';
-      particle.style.top = '50%';
-      particle.style.animationDelay = `${Math.random() * 1}s`;
-      container.appendChild(particle);
+    // RequestAnimationFrame polyfill
+    (function() {
+      var b = 0;
+      var c = ["ms", "moz", "webkit", "o"];
+      for (var a = 0; a < c.length && !window.requestAnimationFrame; ++a) {
+        window.requestAnimationFrame = window[c[a] + "RequestAnimationFrame"];
+        window.cancelAnimationFrame = window[c[a] + "CancelAnimationFrame"] || window[c[a] + "CancelRequestAnimationFrame"];
+      }
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(h, e) {
+          var d = new Date().getTime();
+          var f = Math.max(0, 16 - (d - b));
+          var g = window.setTimeout(function() { h(d + f); }, f);
+          b = d + f;
+          return g;
+        };
+      }
+      if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function(d) { clearTimeout(d); };
+      }
+    })();
 
-      setTimeout(() => {
-        particle.remove();
-      }, 2000);
-    }
-
-    function animateParticles() {
-      setInterval(() => {
-        for (let i = 0; i < 3; i++) { // Tăng số lượng hạt
-          createParticle();
+    // Point class
+    var Point = (function() {
+      function Point(x, y) {
+        this.x = (typeof x !== 'undefined') ? x : 0;
+        this.y = (typeof y !== 'undefined') ? y : 0;
+      }
+      Point.prototype.clone = function() {
+        return new Point(this.x, this.y);
+      };
+      Point.prototype.length = function(length) {
+        if (typeof length == 'undefined')
+          return Math.sqrt(this.x * this.x + this.y * this.y);
+        this.normalize();
+        this.x *= length;
+        this.y *= length;
+        return this;
+      };
+      Point.prototype.normalize = function() {
+        var length = this.length();
+        if (length > 0) {
+          this.x /= length;
+          this.y /= length;
         }
-      }, 100);
-    }
+        return this;
+      };
+      return Point;
+    })();
 
-    animateParticles();
+    // Particle class
+    var Particle = (function() {
+      function Particle() {
+        this.position = new Point();
+        this.velocity = new Point();
+        this.acceleration = new Point();
+        this.age = 0;
+        this.color = '';
+      }
+      Particle.prototype.initialize = function(x, y, dx, dy, color) {
+        this.position.x = x;
+        this.position.y = y;
+        this.velocity.x = dx;
+        this.velocity.y = dy;
+        this.acceleration.x = dx * settings.particles.effect;
+        this.acceleration.y = dy * settings.particles.effect;
+        this.age = 0;
+        this.color = color;
+      };
+      Particle.prototype.update = function(deltaTime) {
+        this.position.x += this.velocity.x * deltaTime;
+        this.position.y += this.velocity.y * deltaTime;
+        this.velocity.x += this.acceleration.x * deltaTime;
+        this.velocity.y += this.acceleration.y * deltaTime;
+        this.age += deltaTime;
+      };
+      Particle.prototype.draw = function(context, image) {
+        function ease(t) {
+          return (--t) * t * t + 1;
+        }
+        var size = image.width * ease(this.age / settings.particles.duration);
+        context.globalAlpha = 1 - this.age / settings.particles.duration;
+        context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
+      };
+      return Particle;
+    })();
 
-    // Thêm hiệu ứng hover cho trái tim
-    document.querySelector('.heart').addEventListener('mouseover', function() {
-      this.style.animationDuration = '0.8s';
-    });
+    // ParticlePool class
+    var ParticlePool = (function() {
+      var particles, firstActive = 0, firstFree = 0, duration = settings.particles.duration;
+      function ParticlePool(length) {
+        particles = new Array(length);
+        for (var i = 0; i < particles.length; i++)
+          particles[i] = new Particle();
+      }
+      ParticlePool.prototype.add = function(x, y, dx, dy, color) {
+        particles[firstFree].initialize(x, y, dx, dy, color);
+        firstFree++;
+        if (firstFree == particles.length) firstFree = 0;
+        if (firstActive == firstFree) firstActive++;
+        if (firstActive == particles.length) firstActive = 0;
+      };
+      ParticlePool.prototype.update = function(deltaTime) {
+        var i;
+        if (firstActive < firstFree) {
+          for (i = firstActive; i < firstFree; i++)
+            particles[i].update(deltaTime);
+        }
+        if (firstFree < firstActive) {
+          for (i = firstActive; i < particles.length; i++)
+            particles[i].update(deltaTime);
+          for (i = 0; i < firstFree; i++)
+            particles[i].update(deltaTime);
+        }
+        while (particles[firstActive].age >= duration && firstActive != firstFree) {
+          firstActive++;
+          if (firstActive == particles.length) firstActive = 0;
+        }
+      };
+      ParticlePool.prototype.draw = function(context, images) {
+        if (firstActive < firstFree) {
+          for (i = firstActive; i < firstFree; i++)
+            particles[i].draw(context, images[particles[i].color]);
+        }
+        if (firstFree < firstActive) {
+          for (i = firstActive; i < particles.length; i++)
+            particles[i].draw(context, images[particles[i].color]);
+          for (i = 0; i < firstFree; i++)
+            particles[i].draw(context, images[particles[i].color]);
+        }
+      };
+      return ParticlePool;
+    })();
 
-    document.querySelector('.heart').addEventListener('mouseout', function() {
-      this.style.animationDuration = '1.5s';
-    });
+    // Main animation logic
+    (function(canvas) {
+      var context = canvas.getContext('2d'),
+          particles = new ParticlePool(settings.particles.length),
+          particleRate = settings.particles.length / settings.particles.duration,
+          time,
+          colors = ['#ff1493', '#ff4500', '#ff69b4', '#00b7eb'], // Màu sắc sống động
+          images = {};
+
+      // Create particle images for each color
+      colors.forEach(color => {
+        var imgCanvas = document.createElement('canvas'),
+            imgContext = imgCanvas.getContext('2d');
+        imgCanvas.width = settings.particles.size;
+        imgCanvas.height = settings.particles.size;
+        function to(t) {
+          var point = pointOnHeart(t);
+          point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350;
+          point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350;
+          return point;
+        }
+        imgContext.beginPath();
+        var t = -Math.PI;
+        var point = to(t);
+        imgContext.moveTo(point.x, point.y);
+        while (t < Math.PI) {
+          t += 0.01;
+          point = to(t);
+          imgContext.lineTo(point.x, point.y);
+        }
+        imgContext.closePath();
+        imgContext.fillStyle = color;
+        imgContext.fill();
+        images[color] = new Image();
+        images[color].src = imgCanvas.toDataURL();
+      });
+
+      // Get point on heart with -PI <= t <= PI
+      function pointOnHeart(t) {
+        var scale = settings.pulse.scale + settings.pulse.amplitude * Math.sin(2 * Math.PI * time / settings.pulse.frequency);
+        return new Point(
+          160 * Math.pow(Math.sin(t), 3) * scale,
+          (130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25) * scale
+        );
+      }
+
+      // Render function
+      function render() {
+        requestAnimationFrame(render);
+        var newTime = new Date().getTime() / 1000,
+            deltaTime = newTime - (time || newTime);
+        time = newTime;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        var amount = particleRate * deltaTime;
+        for (var i = 0; i < amount; i++) {
+          var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+          var dir = pos.clone().length(settings.particles.velocity);
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y, color);
+        }
+        particles.update(deltaTime);
+        particles.draw(context, images);
+      }
+
+      // Handle canvas resizing
+      function onResize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.onresize = onResize;
+
+      // Handle click for particle burst
+      canvas.addEventListener('click', function(e) {
+        var burstAmount = 50;
+        for (var i = 0; i < burstAmount; i++) {
+          var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+          var dir = pos.clone().length(settings.particles.velocity * (1 + Math.random() * 0.5));
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y, color);
+        }
+      });
+
+      // Initialize
+      setTimeout(function() {
+        onResize();
+        render();
+      }, 10);
+    })(document.getElementById('pinkboard'));
   </script>
 </body>
 </html>
